@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* Sticky footer layout */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      /* center vertically */
+      justify-content: center;
+      /* center horizontally */
+    }
+
+    body {
+      background: linear-gradient(135deg, #f13101, #010101);
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background: rgba(0, 0, 0, 0.85) !important;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #e50914 !important;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+    }
+
+    .btn-outline-success {
+      border-color: #e50914;
+      color: #e50914;
+    }
+
+    .btn-outline-success:hover {
+      background-color: #e50914;
+      color: white;
+    }
+
+    .btn-outline-light {
+      border-color: #fff;
+      color: #fff;
+    }
+
+    .btn-outline-light:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .btn-submit {
+      background: #e50914;
+      border: none;
+      padding: 10px 20px;
+      color: #fff;
+      font-weight: bold;
+      transition: 0.3s;
+
+    }
+
+    .btn-submit:hover {
+      background: #b20710;
+
+    }
+
+    .footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px 10px;
+      box-shadow: 0px -3px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Social icons */
+    .footer .social {
+      margin-bottom: 10px;
+    }
+
+    .footer .social a {
+      display: inline-block;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 22px;
+      color: #fff;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      border-radius: 50%;
+      background: #222;
+      transition: 0.3s;
+    }
+
+    .footer .social a:hover {
+      background: #e50914;
+      color: #fff;
+    }
+
+    /* Navigation links */
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .footer ul li {
+      margin: 5px 15px;
+    }
+
+    .footer ul li a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s;
+    }
+
+    .footer ul li a:hover {
+      color: #e50914;
+    }
+
+    /* Copyright */
+    .footer .copyright {
+      background: #000;
+      padding: 10px;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-left: -16px;
+      width: 102%;
+    }
+
+    /* Contact box styling */
+    .contact-section {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">NETFLIX MOVIES</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-5 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link "  href="/home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/contactus.html">Contact</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              Languages
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Hindi</a></li>
+              <li><a class="dropdown-item" href="#">Marathi</a></li>
+              <li><a class="dropdown-item" href="#">English</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Search + Login -->
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+          <a href="/login.html" class="btn btn-outline-light mx-3">Login</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5 ">
+    <div class="row text-center ">
+      <div class="col-md-3 mt-5">
+        <div class=" info-box bg-white h-100 border border-secondary rounded">
+          <i class="fas fa-map-marker-alt mt-3"></i>
+          <h5>OUR MAIN OFFICE</h5>
+          <p>SoHo 94 Broadway St <br> New York, NY 1001</p>
+        </div>
+      </div>
+      <div class="col-md-3 mt-5">
+        <div class="info-box bg-white h-100 border border-secondary rounded">
+          <i class="fas fa-phone mt-3"></i>
+          <h5>PHONE NUMBER</h5>
+          <p>234-9876-5400 <br> 888-0123-4567 (Toll Free)</p>
+        </div>
+      </div>
+      <div class="col-md-3 mt-5">
+        <div class="info-box bg-white h-100 border border-secondary rounded">
+          <i class="fas fa-fax mt-3"></i>
+          <h5>FAX</h5>
+          <p>1-234-567-8900</p>
+        </div>
+      </div>
+      <div class="col-md-3 mt-5">
+        <div class="info-box bg-white h-100 border border-secondary rounded">
+          <i class="fas fa-envelope mt-3"></i>
+          <h5>EMAIL</h5>
+          <p>hello@theme.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content wrapper -->
+  <div class="main-content">
+    <div class="container contact-section">
+      <div class="row">
+        <!-- Left Side Content -->
+        <div class="col-md-6 text-white">
+          <h2 class="contact-title">Contact info</h2>
+          <p>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+            id est laborum.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <form>
+            <div class="mb-3">
+              <label class="form-label text-white">Email</label>
+              <input type="email" class="form-control" placeholder="Enter a valid email address">
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white">Name</label>
+              <input type="text" class="form-control" placeholder="Enter your Name">
+            </div>
+            <div class="mb-3">
+              <label class="form-label text-white">Message</label>
+              <textarea class="form-control" placeholder="Enter your message"></textarea>
+            </div>
+            <button type="submit" class="btn-submit rounded-pill "><a href="/index.html"
+                class="text-white text-decoration-none">SUBMIT</a></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> <!-- end main-content -->
+  <br>
+  <br>
+  <br>
+  
+
+  <footer class="container-fluid footer">
+    <!-- Social Icons -->
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-google-plus-g"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <!-- Navigation -->
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Our Team</a></li>
+    </ul>
+
+    <!-- Copyright -->
+    <div class="copyright">
+      <p>Copyright ©2022; Designed by <b>VEDANT</b></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

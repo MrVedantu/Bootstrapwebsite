@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netflix Movies</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome for Social Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+  body {
+  background: linear-gradient(135deg, #f13101, #010101);
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background: rgba(0, 0, 0, 0.85) !important;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #e50914 !important;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.btn-outline-success {
+  border-color: #e50914;
+  color: #e50914;
+}
+
+.btn-outline-success:hover {
+  background-color: #e50914;
+  color: white;
+}
+
+.btn-outline-light {
+  border-color: #fff;
+  color: #fff;
+}
+
+.btn-outline-light:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.hr-thick {
+  height: 5px;
+  background-color: #fff;
+  border: none;
+}
+
+.hero {
+  position: relative;
+  height: 90vh;
+  background: url("https://i.pinimg.com/1200x/fe/c5/72/fec5721cfc5437f73b3be08a6b0defcf.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+}
+
+/* Overlay for dark effect */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hero .meta {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+.hero p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #eee;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-play {
+  background: #e50914;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.6);
+}
+
+.btn-list {
+  background: rgba(243, 239, 239, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.section {
+  margin: 40px 0;
+}
+
+.divider {
+  height: 2px;
+  width: 100%;
+  background: radial-gradient(200px 6px at 40% 50%, rgba(255, 63, 63, .7), transparent 70%);
+  filter: blur(.3px);
+  opacity: .85;
+  margin: 22px 0 34px;
+}
+
+.chapter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 24px 14px;
+}
+
+.chapter .number {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: .9;
+}
+
+.chapter .label {
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #e6dce9;
+}
+
+.chapter .synopsis {
+  max-width: 45ch;
+  color: #d8d3dc;
+}
+
+.tabs {
+  display: flex;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.tab {
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: #e7dce9;
+  border: 1px solid rgba(255, 255, 255, .14);
+  background: #1a161d;
+}
+
+.tab.active {
+  border-color: transparent;
+  background: linear-gradient(180deg, rgba(229, 9, 20, .2), rgba(229, 9, 20, .12));
+  box-shadow: var(--glow);
+}
+
+.frame {
+  position: relative;
+  border-radius: 18px;
+  padding: 10px;
+  isolation: isolate;
+  box-shadow: inset 0 1px 0 1px rgba(244, 244, 244, 0.06), var(--soft-glow);
+  background: linear-gradient(180deg, #212529, rgba(220, 205, 206, 0.05));
+}
+
+.frame .screen {
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #0c0b0e;
+}
+
+.frame .screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 110% at 80% 0%, rgba(229, 9, 20, .25), transparent 60%), var(--img-ch1) center/cover no-repeat;
+  filter: saturate(1.05);
+  z-index: 0;
+}
+
+.frame .screen .badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background: rgba(0, 0, 0, .55);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.frame .screen .return {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  background: linear-gradient(180deg, var(--netflix), var(--netflix-2));
+  box-shadow: var(--glow);
+}
+
+/* second frame img */
+.frame.alt .screen::before {
+  background: radial-gradient(70% 110% at 30% 0%, rgba(229, 9, 20, .25), transparent 60%), var(--img-ch2) center/cover no-repeat;
+}
+
+/* Footer */
+.footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px 10px;
+  box-shadow: 0px -3px 15px rgba(0, 0, 0, 0.4);
+}
+
+.footer .social {
+  margin-bottom: 20px;
+}
+
+.footer .social a {
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 22px;
+  color: #fff;
+  width: 45px;
+  height: 40px;
+  line-height: 45px;
+  border-radius: 50%;
+  background: #222;
+  transition: 0.3s;
+}
+
+.footer .social a:hover {
+  background: #e50914;
+  color: #fff;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer ul li {
+  margin: 5px 15px;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+  color: #e50914;
+}
+
+.footer .copyright {
+  background: #000;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: -16px;
+  width: 102%;
+}
+
+.shadow {
+  box-shadow: 0 4px 15px rgba(220, 220, 220, 0.6);
+}
+
+/* ✅ Responsive Fixes */
+@media (max-width: 991px) {
+  .hero {
+    height: auto;
+    padding: 40px 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .chapter {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .chapter .number {
+    font-size: 48px;
+  }
+
+  .chapter .synopsis {
+    max-width: 100%;
+  }
+
+  .frame {
+    margin-top: 20px;
+  }
+
+  .frame .screen img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  .footer ul {
+    flex-direction: column;
+  }
+
+  .footer ul li {
+    margin: 8px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">NETFLIX MOVIES</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-5 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contactus.html">Contact</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              Languages
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Hindi</a></li>
+              <li><a class="dropdown-item" href="#">Marathi</a></li>
+              <li><a class="dropdown-item" href="#">English</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Search + Login -->
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+          <a href="/login.html" class="btn btn-outline-light mx-3">Login</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="text-white">Stranger Things</h1>
+      <div class="meta">2016 &nbsp; • &nbsp; 16+ &nbsp; • &nbsp; 4 Season</div>
+      <p>
+        When a young boy vanishes, a small town uncovers a mystery involving secret
+        experiments, terrifying supernatural forces and one strange little girl.
+      </p>
+      <div class="buttons">
+        <button class="btn btn-play">▶ Play</button>
+        <button class="btn btn-list">+ My List</button>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="container">
+    <section class="chapter">
+      <div>
+        <div class="label">Chapter</div>
+        <div class="number">01</div>
+        <p class="synopsis">
+          Netflix acquired the global streaming rights in late 2017. It re-cut the series into 22 shorter episodes and
+          released them worldwide, beginning with the first part on December 20, 2017, followed by the second part on
+          April 6, 2018.
+          In April 2018, Netflix renewed the series with a significantly increased budget for 16 new episodes total.
+          <strong>Warning:</strong> Contains
+          graphic violence involving children.
+        </p>
+        <div class="btn-group border border-rounded">
+          <a href="#beginning" class="btn btn-danger btn-custom">Beginning</a>
+          <a href="#synopsis" class="btn btn-dark btn-custom">Synopsis</a>
+          <a href="#trailer" class="btn btn-dark btn-custom">Trailer</a>
+        </div>
+      </div>
+      <div class="frame">
+        <div class="screen">
+          <img src="https://i.pinimg.com/736x/ec/48/dd/ec48dd60934f65009f9bf11326d94cf3.jpg" class="img-fluid">
+          <span class="badge">Stranger Things</span>
+          <a class="return" href="#">⟲ Return</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="shadow">
+    <hr class="container-fluid hr-thick mb-1 shadow-lg p-0 bg-danger rounded w-75">
+  </div>
+  <!-- CHAPTER 02 -->
+  <div class="container">
+    <section class="chapter">
+      <div class="frame alt">
+        <div class="screen">
+          <img src="https://i.pinimg.com/736x/89/ab/18/89ab188c77567e590549b62da97ed558.jpg">
+          <span class="badge">Stranger Things</span>
+          <a class="return" href="#">⟲ Return</a>
+        </div>
+      </div>
+      <div>
+        <div class="label">Chapter</div>
+        <div class="number">02</div>
+        <p class="synopsis">
+          Wonder Woman is a superhero whose exploits have been published by DC Comics since 1941. She is a warrior of
+          peace hailing from an island of women isolated from the outside world (called "man's world" by the Amazons for
+          obvious reasons) for centuries.
+          Her comics have circulated consistently since her introduction, establishing her as one of the world's most
+          formidable and enduring characters.
+        </p>
+        <div class="btn-group border border-rounded">
+          <a href="#beginning" class="btn btn-danger btn-custom">Beginning</a>
+          <a href="#synopsis" class="btn btn-dark btn-custom">Synopsis</a>
+          <a href="#trailer" class="btn btn-dark btn-custom">Trailer</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="shadow">
+      <hr class="hr-thick mt-4 shadow p-0 bg-danger rounded w-100">
+    </div>
+    <!-- More Like Stranger Things -->
+    <div class="container more-like">
+      <h4 class="text-white">More Like Stranger Things</h4>
+      <div class="row mt-3 g-2">
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/1200x/68/e1/1c/68e11c2a0c22c038d939133b9bb26e85.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/1200x/c2/c8/b4/c2c8b40a3b00e6a448972f9613bb8a3f.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/1200x/b2/d3/18/b2d318304dbe8f6843e6097aef2487db.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/736x/eb/87/c6/eb87c6d691f2eb32f3c5a583ef47449e.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/736x/15/4a/66/154a6638fcf59b56b0a4aaf052752aa8.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/736x/93/1c/cc/931ccc86c58ffb87df8b597eb5a3d03d.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/1200x/68/e1/1c/68e11c2a0c22c038d939133b9bb26e85.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/1200x/c2/c8/b4/c2c8b40a3b00e6a448972f9613bb8a3f.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/1200x/b2/d3/18/b2d318304dbe8f6843e6097aef2487db.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/736x/eb/87/c6/eb87c6d691f2eb32f3c5a583ef47449e.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/736x/15/4a/66/154a6638fcf59b56b0a4aaf052752aa8.jpg"
+            class="img-fluid" alt=""></div>
+        <div class="col-6 col-md-2"><img src="https://i.pinimg.com/736x/93/1c/cc/931ccc86c58ffb87df8b597eb5a3d03d.jpg"
+            class="img-fluid" alt=""></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="container-fluid footer mt-3">
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-google-plus-g"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">News</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Our Team</a></li>
+    </ul>
+
+    <div class="copyright">
+      <p>Copyright ©2022; Designed by <b>VEDANT</b></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
